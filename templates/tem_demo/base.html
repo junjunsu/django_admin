@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单</title>
+    <style>
+        .page-header{
+            height: 50px;
+            background-color:rebeccapurple;
+        }
+        .page-body .menu{
+            height: 500px;
+            background-color: antiquewhite;
+            float: left;
+            width: 20%;
+        }
+        .page-body .content{
+            height: 500px;
+            background-color: cornflowerblue;
+            float: left;
+            width: 80%;
+        }
+        .page-footer{
+            height: 50px;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+{#div>div*3>a#}
+{# div.content#}
+<div>
+    <div class="page-header"></div>
+    <div class="page-body">
+        <div class="menu">
+            <a href="/ordered/">订单</a><br>
+            <a href="/shopping_car/">购物车</a>
+        </div>
+
+        {% block content %}
+
+            父模板默认的
+        {% endblock %}
+<h1>欢迎!</h1>
+    {% block name %}
+
+    {% endblock %}
+    </div>
+    <div class="page-footer"></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

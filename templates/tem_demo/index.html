@@ -1,0 +1,120 @@
+{#引入一个外部文件#}
+{% load my_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template练习</title>
+</head>
+<body>
+<h1>Template</h1>
+<h2>模板里面都用.   没有[]</h2>
+{{ list.2 }}
+<hr>
+{{ info.name }}
+<hr>
+{{ date.year }}-{{ date.month }}-{{ date.day }} {{ date.hour }}:{{ date.minute }}:{{ date.second }}
+<hr>
+{{ person_obj.name }} {{ person_obj.age }} {{ person_obj }}
+<hr>
+{% if  person_obj.name == '小军1'%}
+    <h1>{{ person_obj.name }}</h1>
+{% elif person_obj.name == '小军2' %}
+    <h1>{{ person_obj.name }}</h1>
+{% else %}
+    <h1>else{{ person_obj.name }}</h1>
+{% endif %}
+<hr>
+{% for i in list %}
+    <p>counter:{{ forloop.counter }}:{{ i }}</p>
+    <p>counter0:{{ forloop.counter0 }}:{{ i }}</p>
+    <p>revcounter:{{ forloop.revcounter }}:{{ i }}</p>
+    <p>revcounter0{{ forloop.revcounter0 }}:{{ i }}</p>
+{% endfor %}
+<hr>
+大写:{{ str|upper }}
+{#为什么在这里处理?假设传的是一个对象,把属性大写,在这里就好弄了#}
+<br>
+小写:{{ str|lower }}
+<br>
+首字母大写:{{ str |capfirst}}
+<hr>
+add:{{ num|add:7 }}
+<hr>
+{{ emp | default:"空" }}
+<hr>
+把一个普通的html标签字符串,变成浏览器能解析的格式
+{% autoescape off %}
+{{ link }}
+{% endautoescape %}
+<br>
+跟上面的效果一样
+{{ link | safe }}
+<hr>
+{{ val|truncatechars:5 }}
+{#helloH#}
+<hr>
+过滤html标签{{ link |striptags }}
+<hr>
+禁止渲染
+{% verbatim  %}
+{{ link }}
+{% endverbatim %}
+<hr>
+自定义函数:simple_调用方式--->
+{#{% my_add100 num %}#}
+<br>
+自定义函数:filter调用方式--> 最多2个参数
+{{ num | filter_multi:8 }}
+自定义函数:simple_多参数调用方式--->
+{% my_add1000 num 12 34%}
+{#弊端 if 后面只能跟filter 自定义,不能跟simple_tag#}
+<hr>
+验证simple_tag弊端
+<br>
+{#{% if num|filter_multi:2 > 100 %}#}
+{#    <p>大于100</p>#}
+{#{% elif num|filter_multi:2 < 100 %}#}
+{#    <p>小于100</p>#}
+{#{% else %}#}
+{#    <p>等于100</p>#}
+{#{% endif %}#}
+
+<hr>
+{#first,last#}
+{% for i in list %}
+    {% if forloop.last %}
+        <li style="color: darkcyan">
+    {% else %}
+        <li>
+    {% endif %}
+            i
+        </li>
+{% endfor %}
+<hr>
+empty:用法:如果list有值显示其值,如果为空显示空
+<br>
+{% for i in list %}
+    <li>{{ forloop.counter0 }}----{{ i }}</li>
+    {% empty %}
+    <li>empty!</li>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
